@@ -293,10 +293,10 @@ details ol{margin:10px 0 0;padding-left:20px;line-height:1.5;color:#cdd5f5}
 /* ================== JUGADORES ================== */
 // El primero es el mayor. Las fechas de nacimiento no van en el código: se guardan solo en el móvil.
 const PLAYERS = [
-  { name: "Arlete", color: "var(--c-purple)", old: "Arlette" },
+  { name: "Arlet", color: "var(--c-purple)", old: ["Arlete","Arlette"] },
   { name: "Aritz",   color: "var(--c-yellow)" },
 ];
-function bornOf(p){try{return localStorage.getItem("ce_born_"+p.name)||(p.old&&localStorage.getItem("ce_born_"+p.old))||""}catch(e){return ""}}
+function bornOf(p){try{return localStorage.getItem("ce_born_"+p.name)||(p.old||[]).map(n=>localStorage.getItem("ce_born_"+n)).find(Boolean)||""}catch(e){return ""}}
 function setBorn(p,v){try{localStorage.setItem("ce_born_"+p.name,v)}catch(e){}}
 function ageOf(b){if(!b)return null;const d=new Date(b+"T00:00:00"),n=new Date();let a=n.getFullYear()-d.getFullYear();
   if(n.getMonth()<d.getMonth()||(n.getMonth()===d.getMonth()&&n.getDate()<d.getDate()))a--;return a}
