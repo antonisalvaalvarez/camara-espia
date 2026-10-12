@@ -41,10 +41,31 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .chip i{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:14px;color:var(--night)}
 .chip small{color:var(--muted);font-weight:700}
 .bday{background:linear-gradient(90deg,#ff4d5e33,#ffc93c33);border:1px solid var(--gold);border-radius:14px;padding:10px 14px;font-weight:800}
-.score{display:flex;gap:10px;align-items:stretch}
-.score div{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
-.score b{display:block;font-family:var(--f-mono);font-size:30px;line-height:1}
-.score span{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+/* marcador tipo estadio */
+.board{background:#070b17;border:2px solid var(--line);border-radius:20px;padding:14px 12px 12px;display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 0 0 4px #0f1530;width:100%;max-width:440px}
+.board .teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px}
+.side{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;padding-top:10px}
+.side svg.av{width:44px;height:44px}
+.side .lbl{font-family:var(--f-display);font-size:15px;letter-spacing:.08em}
+.side.kids .lbl{color:var(--safe)}.side.guard .lbl{color:var(--alert)}
+.led{position:relative;font-family:var(--f-mono);font-size:58px;line-height:1;padding:6px 12px;background:#03050c;border-radius:12px;border:1px solid #1b2244;font-variant-numeric:tabular-nums}
+.led::before{content:"88";position:absolute;left:12px;top:6px;color:#ffffff0d}
+.side.kids .led{color:var(--safe);text-shadow:0 0 14px #3ddc9799}
+.side.guard .led{color:var(--alert);text-shadow:0 0 14px #ff3b4e99}
+.crown{position:absolute;top:-8px;width:30px;height:22px;opacity:0;transform:translateY(6px) rotate(-8deg);transition:.3s}
+.side.lead .crown{opacity:1;transform:none}
+.side.lead .led{box-shadow:0 0 0 2px var(--gold)}
+.vs{font-family:var(--f-display);color:var(--muted);font-size:20px;padding-top:40px}
+.bump .led{animation:bump .7s .25s}
+@keyframes bump{0%{transform:scale(1)}35%{transform:scale(1.3)}100%{transform:scale(1)}}
+.hist{display:flex;justify-content:center;gap:6px;min-height:14px}
+.hist i{width:12px;height:12px;border-radius:50%;background:var(--line)}
+.hist i.k{background:var(--safe)}.hist i.g{background:var(--alert)}
+.hist i:last-child.k,.hist i:last-child.g{box-shadow:0 0 0 2px #fff4}
+.streak{text-align:center;font-weight:900;font-size:14px;color:var(--gold);min-height:1.2em}
+.boardFoot{display:flex;justify-content:center;gap:8px;align-items:center;flex-wrap:wrap}
+.linkbtn{background:none;color:var(--muted);font-weight:800;font-size:13px;padding:4px 8px;text-decoration:underline}
+.linkbtn.danger{color:var(--alert)}
 .group h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:800}
 .opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .opt{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:12px;text-align:left;display:flex;flex-direction:column;gap:4px;min-height:84px;transition:border-color .15s,transform .1s}
@@ -70,6 +91,56 @@ details summary{font-weight:900;cursor:pointer}
 .bornRow{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:800}
 .bornRow input{font:inherit;color:var(--ink);background:var(--night);border:2px solid var(--line);border-radius:10px;padding:8px 10px}
 details ol{margin:10px 0 0;padding-left:20px;line-height:1.5;color:#cdd5f5}
+
+/* ---------- AVENTURA ---------- */
+.advCard{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0d1a2e,#16264a);border:2px solid #2c4a6e;border-radius:20px;padding:12px 14px;text-align:left;box-shadow:0 6px 0 #0a1424;transition:transform .08s}
+.advCard:active{transform:translateY(3px)}
+.advCard svg{width:96px;height:64px;flex:none}
+.advTxt{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.advTxt b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.04em;color:var(--gold)}
+.advTxt small{color:#9fb4d8;font-weight:800}
+.advGo{font-size:40px;color:var(--gold);line-height:1}
+.freeH{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:6px 0 -10px;font-weight:800}
+#map{padding-bottom:0;background:#08121f}
+.mapTop{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:10px}
+.mapTitle{text-align:center;line-height:1}
+.mapTitle span{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.3em;color:#6f8fb8}
+.mapTitle b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em;color:#e9dcc0}
+.mapProg{font-family:var(--f-mono);color:var(--gold);font-size:18px;min-width:52px;text-align:right}
+.mapScroll{flex:1;min-height:0;margin:0 -16px;padding:0 16px calc(env(safe-area-inset-bottom,0px) + 24px)}
+.mapArea{position:relative;width:100%;max-width:460px;margin:0 auto;aspect-ratio:100/330;
+  background:radial-gradient(ellipse at 30% 20%,#13304f55,transparent 60%),radial-gradient(ellipse at 70% 70%,#1c2a4a66,transparent 60%),
+    linear-gradient(#ffffff08 1px,transparent 1px) 0 0/100% 3.03%,linear-gradient(90deg,#ffffff08 1px,transparent 1px) 0 0/10% 100%,#0b1a2c;
+  border:2px solid #23415f;border-radius:18px;overflow:hidden}
+.mapArea>svg{position:absolute;inset:0;width:100%;height:100%}
+.lvl{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;background:none;padding:0;width:120px}
+.lvl .dot{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-size:28px;background:#12233b;border:3px solid #3a5a80;position:relative;transition:transform .15s}
+.lvl:active .dot{transform:scale(.94)}
+.lvl .nm{font-family:var(--f-mono);font-size:12px;color:#c9d6ee;text-align:center;line-height:1.15;background:#08121fcc;padding:2px 6px;border-radius:6px;max-width:120px}
+.lvl .num{position:absolute;top:-6px;left:-6px;width:24px;height:24px;border-radius:50%;background:#08121f;border:2px solid #3a5a80;font-family:var(--f-mono);font-size:12px;display:grid;place-items:center;color:#c9d6ee}
+.lvl.done .dot{border-color:var(--safe);background:#0f2e2a}
+.lvl .ok{position:absolute;bottom:-4px;right:-6px;width:24px;height:24px;border-radius:50%;background:var(--safe);color:#08321f;font-weight:900;display:grid;place-items:center;font-size:14px}
+.lvl.cur .dot{border-color:var(--gold);background:#2a2410;animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #ffc93c88}70%{box-shadow:0 0 0 16px #ffc93c00}100%{box-shadow:0 0 0 0 #ffc93c00}}
+.lvl.lock .dot{filter:grayscale(1) brightness(.55);border-style:dashed}
+.lvl.lock .nm{color:#5d6f8e}
+.lvl.boss .dot{width:76px;height:76px;font-size:36px;border-color:var(--alert)}
+.me{position:absolute;transform:translate(-50%,-100%);font-size:30px;pointer-events:none;filter:drop-shadow(0 4px 4px #0008);animation:hop 1.2s ease-in-out infinite;z-index:2}
+@keyframes hop{50%{transform:translate(-50%,-118%)}}
+.fog{position:absolute;left:0;right:0;top:0;pointer-events:none;background:linear-gradient(#08121fee 0%,#08121fbb 70%,#08121f00 100%)}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:5;background:#efe3c8;color:#2b2416;border-radius:22px 22px 0 0;padding:20px 16px calc(env(safe-area-inset-bottom,0px) + 16px);box-shadow:0 -10px 40px #000a;display:flex;flex-direction:column;gap:12px;max-width:560px;margin:0 auto;animation:up .25s ease-out;
+  background-image:repeating-linear-gradient(0deg,transparent 0 27px,#c9b48a55 27px 28px)}
+@keyframes up{from{transform:translateY(100%)}}
+.stamp{position:absolute;top:16px;right:16px;font-family:var(--f-display);color:#c0262f;border:3px solid #c0262f;border-radius:6px;padding:2px 8px;font-size:15px;transform:rotate(8deg);opacity:.85}
+.sheetHead{display:flex;align-items:center;gap:12px;padding-right:110px}
+.sheetIc{width:56px;height:56px;border-radius:14px;background:#2b2416;display:grid;place-items:center;font-size:30px;flex:none}
+.sheetHead small{font-family:var(--f-mono);letter-spacing:.2em;color:#7a6a48}
+.sheetHead h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.05}
+.brief{margin:0;font-size:17px;line-height:1.45;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:#2b241614;border:1.5px solid #2b241640;border-radius:999px;padding:5px 12px;font-weight:800;font-size:14px}
+.sheet .ghost{color:#2b2416;border-color:#2b241650}
+#winBoard,#loseBoard{width:100%;max-width:440px;display:flex;justify-content:center}
 
 /* ---------- PREPARACIÓN ---------- */
 #setup{align-items:center;gap:14px;text-align:center}
@@ -162,6 +233,26 @@ details ol{margin:10px 0 0;padding-left:20px;line-height:1.5;color:#cdd5f5}
 .pad button{background:var(--panel);border:2px solid var(--line);border-radius:14px;font-family:var(--f-mono);font-size:30px;padding:10px 0}
 .pad button:active{background:#26305c}
 
+/* letras */
+.wordCard{display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--panel);border:2px solid var(--line);border-radius:20px;padding:16px 12px;margin-top:10px}
+.wordCard .em{font-size:clamp(64px,22vw,110px);line-height:1}
+.word{font-family:var(--f-display);font-size:clamp(44px,14vw,72px);letter-spacing:.08em;line-height:1}
+.miss{display:inline-block;min-width:.9em;color:var(--gold);border-bottom:5px solid var(--gold);text-align:center}
+.miss.got{color:var(--safe);border-color:var(--safe)}
+.slotsW{display:flex;gap:8px}
+.sl{width:clamp(52px,15vw,68px);height:clamp(62px,18vw,80px);border-radius:14px;border:3px dashed var(--line);display:grid;place-items:center;font-family:var(--f-display);font-size:clamp(38px,11vw,52px)}
+.sl i{font-style:normal;color:#ffffff30}
+.sl.cur{border-color:var(--gold)}
+.sl.got{border-style:solid;border-color:var(--safe);background:#0f2e2a}
+.sl.got i{color:var(--safe)}
+.letters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:auto;padding-top:14px}
+.tile{width:clamp(64px,19vw,84px);height:clamp(64px,19vw,84px);border-radius:16px;background:#1d2546;border:3px solid #3a4a86;font-family:var(--f-display);font-size:clamp(36px,11vw,48px);box-shadow:0 5px 0 #10152e}
+.tile:active{transform:translateY(3px);box-shadow:0 2px 0 #10152e}
+.tile.right{background:var(--safe);color:#08321f;border-color:var(--safe)}
+.tile.wrong{opacity:.3}
+.tile.used{opacity:.15}
+.letters.three .tile{width:clamp(84px,25vw,110px);height:clamp(84px,25vw,110px);font-size:clamp(48px,14vw,64px)}
+
 /* memoria */
 .simon{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;max-height:62vh}
 .simon button{border-radius:22px;opacity:.38;transition:opacity .1s,transform .1s;border:4px solid #ffffff22}
@@ -169,7 +260,7 @@ details ol{margin:10px 0 0;padding-left:20px;line-height:1.5;color:#cdd5f5}
 .simon[aria-disabled="true"] button{pointer-events:none}
 
 /* ---------- FINAL ---------- */
-.end{align-items:center;justify-content:center;text-align:center;gap:14px}
+.end{align-items:center;justify-content:safe center;text-align:center;gap:14px}
 .end h2{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,13vw,80px);line-height:.95;margin:0}
 .end p{font-size:20px;font-weight:800;margin:0;color:#cdd5f5;max-width:480px}
 #lose.flash{animation:flash .35s steps(2) 8}
@@ -200,17 +291,23 @@ details ol{margin:10px 0 0;padding-left:20px;line-height:1.5;color:#cdd5f5}
       <p class="bornNote">Para mostrar la edad y felicitar el cumpleaños. Se guardan solo en este móvil.</p>
       <div id="bornList" class="bornList"></div>
     </details>
-    <div class="score">
-      <div><span>Espías</span><b id="scKids">0</b></div>
-      <div><span>Guardia</span><b id="scGuard">0</b></div>
-    </div>
+    <div id="menuBoard"></div>
 
+    <button class="advCard" id="advBtn">
+      <svg viewBox="0 0 120 80" aria-hidden="true"><rect x="2" y="2" width="116" height="76" rx="8" fill="#0d1a2e" stroke="#2c4a6e" stroke-width="2"/>
+        <path d="M14 66 C 34 40, 50 70, 64 44 S 96 20, 106 14" stroke="#ff3b4e" stroke-width="3" stroke-dasharray="5 5" fill="none"/>
+        <circle cx="14" cy="66" r="6" fill="#3ddc97"/><circle cx="64" cy="44" r="6" fill="#ffc93c"/><path d="M100 8 l12 12 M112 8 l-12 12" stroke="#ff3b4e" stroke-width="4" stroke-linecap="round"/></svg>
+      <span class="advTxt"><b>AVENTURA</b><small id="advProg">Mapa secreto · 10 misiones</small></span>
+      <span class="advGo">›</span>
+    </button>
+    <h2 class="freeH">Partida libre</h2>
     <div class="group"><h2>Misión</h2><div class="opts" id="optMode"></div></div>
     <div class="group"><h2>Reto final</h2><div class="opts" id="optReto"></div></div>
     <div class="group"><h2>Guardia</h2><div class="opts three" id="optGuard"></div></div>
 
     <div class="row">
       <div class="toggle">Voz <button id="voiceBtn" aria-pressed="true">Activada</button></div>
+      <div class="toggle">Música <button id="musicBtn" aria-pressed="true">Activada</button></div>
     </div>
 
     <button class="big" id="startBtn">EMPEZAR</button>
@@ -228,9 +325,28 @@ details ol{margin:10px 0 0;padding-left:20px;line-height:1.5;color:#cdd5f5}
   </div>
 </section>
 
+<!-- ============ MAPA ============ -->
+<section id="map" class="screen" hidden>
+  <div class="mapTop">
+    <button class="ghost" id="mapBack" style="font-size:14px;padding:6px 12px">Menú</button>
+    <div class="mapTitle"><span>EXPEDIENTE</span><b>MAPA SECRETO</b></div>
+    <div class="mapProg" id="mapProg">0/10</div>
+  </div>
+  <div class="mapScroll scroll" id="mapScroll">
+    <div class="mapArea" id="mapArea"></div>
+  </div>
+  <div class="sheet" id="sheet" hidden>
+    <div class="stamp">TOP SECRET</div>
+    <div class="sheetHead"><span class="sheetIc" id="shIc"></span><div><small id="shNum">MISIÓN 01</small><h3 id="shName"></h3></div></div>
+    <p class="brief" id="shBrief"></p>
+    <div class="chips" id="shChips"></div>
+    <div class="row" style="justify-content:flex-end"><button class="ghost" id="shClose">Cerrar</button><button class="big safe" id="shPlay">JUGAR</button></div>
+  </div>
+</section>
+
 <!-- ============ PREPARACIÓN ============ -->
 <section id="setup" class="screen scroll" hidden>
-  <h2>Coloca el móvil</h2>
+  <h2 id="setupTitle">Coloca el móvil</h2>
   <div class="preview"><video id="video" playsinline muted autoplay></video></div>
   <div class="meter" id="meter"><i></i></div>
   <p class="hint">Deja el móvil quieto apuntando al pasillo. Si la barra se pone roja, la cámara ve movimiento. Con el pasillo quieto debe quedarse verde.</p>
@@ -268,20 +384,22 @@ details ol{margin:10px 0 0;padding-left:20px;line-height:1.5;color:#cdd5f5}
 </section>
 
 <!-- ============ GANAR / PERDER ============ -->
-<section id="win" class="screen end" hidden>
+<section id="win" class="screen end scroll" hidden>
   <canvas id="confetti"></canvas>
   <div style="font-size:72px" id="winIcon">🎉</div>
   <h2 id="winTitle">¡BOMBA DESACTIVADA!</h2>
   <p id="winText"></p>
   <div class="stat" id="winStat"></div>
-  <div class="row"><button class="ghost" data-go="menu">Menú</button><button class="big safe" data-go="again">OTRA VEZ</button></div>
+  <div id="winBoard"></div>
+  <div class="row"><button class="ghost" data-go="menu">Menú</button><button class="big safe" data-go="again" id="winAgain">OTRA VEZ</button><button class="big safe" data-go="next" id="winNext" hidden>SIGUIENTE MISIÓN</button></div>
 </section>
 
-<section id="lose" class="screen end" hidden>
+<section id="lose" class="screen end scroll" hidden>
   <h2 id="loseTitle">¡TE HE VISTO!</h2>
   <div class="snaplbl" id="snapLbl">CÁMARA 1 · INTRUSO DETECTADO</div>
   <img class="snap" id="snap" alt="Foto del momento en que el guardia os ha visto">
   <p id="loseText"></p>
+  <div id="loseBoard"></div>
   <div class="row"><button class="ghost" data-go="menu">Menú</button><button class="big" data-go="again">REVANCHA</button></div>
 </section>
 
@@ -311,10 +429,13 @@ const MODES={
   laser:{ic:"🚨",name:"Láseres",desc:"Los láseres se apagan a ratos",btn:"APAGAR LA ALARMA",title:"Apaga la alarma",win:"¡ALARMA APAGADA!",winIc:"🏆",lose:"¡ALARMA!",loseTxt:"Se acabó el tiempo y ha sonado la alarma."},
   reloj:{ic:"⏱️",name:"Contrarreloj",desc:"2 minutos para llegar",btn:"DESACTIVAR LA BOMBA",title:"Desactiva la bomba",win:"¡BOMBA DESACTIVADA!",winIc:"⚡",lose:"¡PUM!",loseTxt:"Se acabó la mecha. Por suerte la bomba era de confeti."},
 };
+const RETO_JEFE={ic:"👑",name:"Triple candado",desc:"Los dos espías, por turnos"};
 const RETOS={
   equipo:{ic:"🤝",name:"En equipo",desc:`Dos candados: uno para ${SMALL.name} y otro para ${BIG.name}`},
   cables:{ic:"🔌",name:"Cables",desc:`Unir colores · ${SMALL.name}`},
   cortar:{ic:"✂️",name:"Corta el cable",desc:`El color correcto · ${SMALL.name}`},
+  letra:{ic:"🔤",name:"Primera letra",desc:`¿Con qué letra empieza? · ${SMALL.name}`},
+  palabra:{ic:"📝",name:"Palabra secreta",desc:`Copiar una palabra · ${SMALL.name}`},
   codigo:{ic:"🔢",name:"Código secreto",desc:`Sumar símbolos · ${BIG.name}`},
   memoria:{ic:"🧠",name:"Memoria",desc:`Repetir colores · ${BIG.name}`},
 };
@@ -324,11 +445,59 @@ const GUARDS={
   ninja:{ic:"🥷",name:"Ninja",desc:"Difícil",sens:.016,pix:22,sleep:3,awake:[5,14],fuse:-10},
 };
 
+const VILLAIN="el Doctor Bigotes";
+const LEVELS=[
+  {name:"El pasillo",ic:"🚪",mode:"bomba",reto:"cables",guard:"dormilon",x:28,
+   brief:"Primera misión. El Doctor Bigotes ha dejado una bomba de confeti en el pasillo. Llegad sin que el guardia os vea."},
+  {name:"La cocina",ic:"🍪",mode:"caja",reto:"cortar",guard:"dormilon",x:70,
+   brief:"El guardia vigila la caja fuerte de las galletas. Cortad el cable correcto para abrirla."},
+  {name:"La biblioteca",ic:"📚",mode:"bomba",reto:"letra",guard:"dormilon",x:34,
+   brief:"En la biblioteca, las letras guardan el secreto. Hay que descubrir con qué letra empieza cada palabra."},
+  {name:"El museo",ic:"💎",mode:"laser",reto:"memoria",guard:"normal",x:72,tweak:{sleep:4},
+   brief:"El diamante está protegido por láseres. Avanzad solo cuando se apaguen."},
+  {name:"El banco",ic:"🏦",mode:"caja",reto:"equipo",guard:"normal",x:30,
+   brief:"La caja fuerte del banco tiene dos candados. Uno para cada espía."},
+  {name:"El tren nocturno",ic:"🚂",mode:"reloj",reto:"palabra",guard:"normal",x:68,
+   brief:"El tren llega a la estación en dos minutos. Para pararlo hay que escribir la palabra secreta."},
+  {name:"La embajada",ic:"🏛️",mode:"laser",reto:"equipo",guard:"normal",x:32,tweak:{awake:[5,14]},
+   brief:"Los láseres de la embajada tardan más en apagarse. Paciencia, espías."},
+  {name:"El faro",ic:"🗼",mode:"bomba",reto:"memoria",guard:"ninja",x:70,
+   brief:"El guardia ninja vigila el faro. Cualquier movimiento le despierta. Moveos como sombras."},
+  {name:"La base secreta",ic:"🛰️",mode:"reloj",reto:"equipo",guard:"ninja",x:36,
+   brief:"Habéis encontrado la base secreta. Dos minutos y dos candados. Ni un error."},
+  {name:"La guarida del Doctor Bigotes",ic:"🥸",mode:"bomba",reto:"jefe",guard:"ninja",x:52,tweak:{awake:[6,15],fuse:-20},
+   brief:"La misión final. El Doctor Bigotes protege su súper bomba con tres candados. ¡Es ahora o nunca!"},
+];
 const store={get(k,d){try{const v=localStorage.getItem("ce_"+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
              set(k,v){try{localStorage.setItem("ce_"+k,JSON.stringify(v))}catch(e){}}};
-const cfg=Object.assign({mode:"bomba",reto:"equipo",guard:"normal",voice:true},store.get("cfg",{}));
+const cfg=Object.assign({mode:"bomba",reto:"equipo",guard:"normal",voice:true,music:true},store.get("cfg",{}));
 if(!MODES[cfg.mode])cfg.mode="bomba"; if(!RETOS[cfg.reto])cfg.reto="equipo"; if(!GUARDS[cfg.guard])cfg.guard="normal";
-let score=store.get("score",{kids:0,guard:0});
+// Partida en curso: libre (copiada del menú) o un nivel de la aventura con sus ajustes.
+let play={mode:cfg.mode,reto:cfg.reto,guard:cfg.guard,level:null,tweak:null};
+function G(){return Object.assign({},GUARDS[play.guard],play.tweak||{})}
+let score=Object.assign({kids:0,guard:0,hist:[]},store.get("score",{}));
+function addPoint(side){score[side]++;score.hist=(score.hist||[]).concat(side==="kids"?"k":"g").slice(-10);store.set("score",score)}
+const AV_SPY='<svg class="av" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 20h32l-4-11c-1-3-4-3-6-2l-6 3-6-3c-2-1-5-1-6 2z" fill="#eef2ff"/><rect x="4" y="19" width="40" height="4" rx="2" fill="#eef2ff"/><path d="M9 27h30v4c0 4-3 6-7 6-3 0-5-2-6-4h-4c-1 2-3 4-6 4-4 0-7-2-7-6z" fill="#3ddc97"/><circle cx="16" cy="31" r="2.5" fill="#070b17"/><circle cx="32" cy="31" r="2.5" fill="#070b17"/></svg>';
+const AV_GUARD='<svg class="av" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="29" r="14" fill="#f2c79a"/><path d="M8 18q16-12 32 0v4H8z" fill="#ff3b4e"/><rect x="6" y="20" width="36" height="4" rx="2" fill="#a3172a"/><path d="M24 9l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z" fill="#ffc93c"/><circle cx="19" cy="30" r="2.2" fill="#111"/><circle cx="29" cy="30" r="2.2" fill="#111"/><path d="M20 36q4 2 8 0" stroke="#7a2a2a" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+const CROWN='<svg class="crown" viewBox="0 0 30 22" aria-hidden="true"><path d="M2 20 L4 6 L10 12 L15 2 L20 12 L26 6 L28 20 Z" fill="#ffc93c" stroke="#a67c00" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+function boardHTML(opts={}){
+  const h=score.hist||[],last=h[h.length-1];let run=0;for(let i=h.length-1;i>=0&&h[i]===last;i--)run++;
+  const lead=score.kids>score.guard?"kids":score.guard>score.kids?"guard":"";
+  const pad=n=>String(n).padStart(2,"0");
+  const streak=run>=2?`🔥 ${run} seguidas ${last==="k"?"de los espías":"del guardia"}`:(lead?"":(score.kids?"¡Empate!":""));
+  const side=(k,name,av)=>`<div class="side ${k}${lead===k?" lead":""}${opts.bump===k?" bump":""}">${CROWN}${av}<div class="lbl">${name}</div><div class="led">${pad(score[k])}</div></div>`;
+  return `<div class="board" role="group" aria-label="Marcador: espías ${score.kids}, guardia ${score.guard}">
+    <div class="teams">${side("kids","ESPÍAS",AV_SPY)}<div class="vs">VS</div>${side("guard","GUARDIA",AV_GUARD)}</div>
+    <div class="hist" aria-hidden="true">${h.map(x=>`<i class="${x}"></i>`).join("")}</div>
+    <div class="streak">${streak}</div>
+    ${opts.reset?`<div class="boardFoot" id="resetRow"><button class="linkbtn" id="resetBtn">Reiniciar marcador</button></div>`:""}
+  </div>`}
+function renderBoard(){
+  $("#menuBoard").innerHTML=boardHTML({reset:true});
+  const rb=$("#resetBtn");if(!rb)return;
+  rb.onclick=()=>{$("#resetRow").innerHTML='<span style="color:var(--muted);font-weight:800;font-size:13px">¿Poner el marcador a cero?</span><button class="linkbtn danger" id="resetYes">Sí, a cero</button><button class="linkbtn" id="resetNo">No</button>';
+    $("#resetYes").onclick=()=>{score={kids:0,guard:0,hist:[]};store.set("score",score);renderBoard()};
+    $("#resetNo").onclick=renderBoard}}
 
 const $=s=>document.querySelector(s);
 function show(id){document.querySelectorAll(".screen").forEach(s=>s.hidden=s.id!==id)}
@@ -344,13 +513,16 @@ function renderMenu(){
   const b=PLAYERS.filter(p=>isBday(bornOf(p)));
   $("#bday").hidden=!b.length;
   if(b.length)$("#bday").textContent=`🎂 ¡Feliz cumpleaños, ${b.map(p=>p.name).join(" y ")}! Hoy el guardia está de fiesta.`;
-  $("#scKids").textContent=score.kids; $("#scGuard").textContent=score.guard;
+  renderBoard();
+  const ad=advDone();$("#advProg").textContent=ad>=LEVELS.length?"¡Aventura completada! 🏆":ad?`Misión ${ad+1} de ${LEVELS.length} · ${LEVELS[ad].name}`:`Mapa secreto · ${LEVELS.length} misiones`;
   const opts=(el,obj,key)=>{$(el).innerHTML=Object.entries(obj).map(([k,o])=>`<button class="opt" data-k="${k}" aria-pressed="${cfg[key]===k}"><span class="ic">${o.ic}</span><b>${o.name}</b><small>${o.desc}</small></button>`).join("");
     $(el).onclick=e=>{const b=e.target.closest(".opt");if(!b)return;cfg[key]=b.dataset.k;store.set("cfg",cfg);renderMenu();sfx.click()}};
   opts("#optMode",MODES,"mode");opts("#optReto",RETOS,"reto");opts("#optGuard",GUARDS,"guard");
+  $("#musicBtn").setAttribute("aria-pressed",cfg.music);$("#musicBtn").textContent=cfg.music?"Activada":"Apagada";
   $("#voiceBtn").setAttribute("aria-pressed",cfg.voice);$("#voiceBtn").textContent=cfg.voice?"Activada":"Apagada";
 }
 $("#bornList").addEventListener("change",e=>{const i=e.target.dataset.i;if(i==null)return;setBorn(PLAYERS[i],e.target.value);renderMenu()});
+$("#musicBtn").onclick=()=>{cfg.music=!cfg.music;store.set("cfg",cfg);renderMenu();if(cfg.music){music.start();setTimeout(()=>music.stop(),2500)}};
 $("#voiceBtn").onclick=()=>{cfg.voice=!cfg.voice;store.set("cfg",cfg);renderMenu()};
 
 /* ================== SONIDO Y VOZ ================== */
@@ -364,6 +536,27 @@ function tone(f,d,type="square",v=.25,when=0,f2){const a=audio();if(!a)return;co
 function noise(d,freq,v=.5,when=0,type="lowpass",attack=.005){const a=audio();if(!a)return;const t=a.currentTime+when,s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();
   s.buffer=noiseBuf;s.loop=true;f.type=type;f.frequency.value=freq;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+attack);g.gain.exponentialRampToValueAtTime(.001,t+d);
   s.connect(f).connect(g).connect(a.destination);s.start(t);s.stop(t+d+.05)}
+/* Música de espías mientras el guardia vigila: bajo cromático, golpes y platillo (generada, sin archivos). */
+const music={timer:null,step:0,next:0,bus:null,
+  start(){const a=audio();if(!a||!cfg.music||this.timer)return;
+    this.bus=a.createGain();this.bus.gain.value=.0001;this.bus.gain.exponentialRampToValueAtTime(.55,a.currentTime+.4);this.bus.connect(a.destination);
+    this.step=0;this.next=a.currentTime+.05;this.timer=setInterval(()=>this.tick(),50)},
+  stop(){if(!this.timer)return;clearInterval(this.timer);this.timer=null;const a=ac,b=this.bus;
+    if(a&&b){b.gain.cancelScheduledValues(a.currentTime);b.gain.setValueAtTime(b.gain.value,a.currentTime);b.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.25);setTimeout(()=>b.disconnect(),400)}},
+  note(f,t,d,type,v,cut){const a=ac,o=a.createOscillator(),g=a.createGain(),fl=a.createBiquadFilter();o.type=type;o.frequency.value=f;fl.type="lowpass";fl.frequency.value=cut;
+    g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(fl).connect(g).connect(this.bus);o.start(t);o.stop(t+d+.02)},
+  hat(t,v){const a=ac,src=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();src.buffer=noiseBuf;f.type="highpass";f.frequency.value=7000;
+    g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);src.connect(f).connect(g).connect(this.bus);src.start(t,Math.random());src.stop(t+.06)},
+  tick(){const a=ac,eighth=60/132/2;
+    // E E F# F# G G F# F# (la línea de bajo clásica de película de espías), una octava arriba al final de cada 4 compases
+    const BASS=[82.4,82.4,92.5,92.5,98,98,92.5,92.5];
+    while(this.next<a.currentTime+.2){const t=this.next,i=this.step%8,bar=Math.floor(this.step/8)%4;
+      const up=bar===3&&i>=4?2:1;
+      this.note(BASS[i]*up,t,eighth*.85,"sawtooth",.5,700);
+      if(i%2===1)this.hat(t,.25);
+      if(i===0&&bar%2===0)this.note(329.6,t,.35,"square",.12,1800);
+      if(i===6&&bar===1){this.note(493.9,t,.12,"square",.1,2400);this.note(466.2,t+eighth,.3,"square",.1,2400)}
+      this.step++;this.next+=eighth}}};
 const sfx={
   click(){tone(660,.06,"triangle",.15)},
   tick(){tone(880,.09,"square",.2)},
@@ -418,7 +611,7 @@ function startDetect(){
   detectTimer=setInterval(()=>{
     const g=grab();if(!g)return;frames.push(g);if(frames.length>4)frames.shift();
     if(frames.length<4){lastFrac=0;return}
-    lastFrac=motion(g,frames[0],GUARDS[cfg.guard].pix);
+    lastFrac=motion(g,frames[0],G().pix);
     if(onMotion)onMotion(lastFrac);
   },100);
 }
@@ -432,25 +625,33 @@ function snapshot(){
 let game=null; // estado de la partida en curso
 const timers=new Set();
 function later(fn,ms){const t=setTimeout(()=>{timers.delete(t);fn()},ms);timers.add(t);return t}
-function clearAll(){timers.forEach(clearTimeout);timers.clear();stopDetect();clearInterval(game&&game.clock);clearInterval(game&&game.fuseTimer)}
+function clearAll(){music.stop();timers.forEach(clearTimeout);timers.clear();stopDetect();clearInterval(game&&game.clock);clearInterval(game&&game.fuseTimer)}
 
-$("#startBtn").onclick=async()=>{audio();sfx.click();show("setup");$("#camErr").hidden=true;
-  if(await startCamera()){startDetect();const g=GUARDS[cfg.guard];onMotion=f=>{const r=Math.min(1,f/g.sens);$("#meter i").style.width=(r*100)+"%";$("#meter").classList.toggle("hot",r>=1)}}};
-$("#setupBack").onclick=()=>{stopDetect();show("menu")};
+function goSetup(){show("setup");$("#camErr").hidden=true;$("#setupTitle").textContent=play.level==null?"Coloca el móvil":`Misión ${play.level+1} · ${LEVELS[play.level].name}`;
+  startCamera().then(ok=>{if(!ok)return;startDetect();const g=G();onMotion=f=>{const r=Math.min(1,f/g.sens);$("#meter i").style.width=(r*100)+"%";$("#meter").classList.toggle("hot",r>=1)}})}
+$("#startBtn").onclick=()=>{audio();sfx.click();play={mode:cfg.mode,reto:cfg.reto,guard:cfg.guard,level:null,tweak:null};goSetup()};
+$("#advBtn").onclick=()=>{audio();sfx.click();openMap()};
+$("#setupBack").onclick=()=>{stopDetect();backHome()};
+function backHome(){if(play.level!=null)openMap();else{show("menu");renderMenu()}}
 $("#readyBtn").onclick=async()=>{audio();if(!(stream&&stream.active)&&!(await startCamera()))return;keepAwake();
   try{if(document.documentElement.requestFullscreen&&!document.fullscreenElement)await document.documentElement.requestFullscreen()}catch(e){}
   startGame()};
-$("#quitBtn").onclick=()=>{clearAll();game=null;show("menu");renderMenu()};
-document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{clearAll();if(b.dataset.go==="again"){startGame()}else{show("menu");renderMenu()}});
+$("#quitBtn").onclick=()=>{clearAll();game=null;backHome()};
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{clearAll();const g=b.dataset.go;
+  if(g==="again")startGame();
+  else if(g==="next")openMap(play.level+1<LEVELS.length?play.level+1:null);
+  else backHome()});
 
 function startGame(){
   clearAll();stopDetect();
-  const m=MODES[cfg.mode];
-  game={phase:"count",t0:0,hits:0,grace:0,deadline:0,mode:cfg.mode};
-  show("count");$("#countTitle").textContent=`¡A vuestros puestos, ${NAMES}!`;
-  $("#countSub").textContent=cfg.mode==="laser"?"Los láseres se encienden en…":"El guardia empieza a vigilar en…";
-  say(`¡A vuestros puestos, ${NAMES}!`);
-  let n=10;$("#countNum").textContent=n;
+  const m=MODES[play.mode];
+  game={phase:"count",t0:0,hits:0,grace:0,deadline:0,mode:play.mode};
+  show("count");
+  const lv=play.level!=null?LEVELS[play.level]:null;
+  $("#countTitle").textContent=lv?`Misión ${play.level+1}: ${lv.name}`:`¡A vuestros puestos, ${NAMES}!`;
+  $("#countSub").textContent=play.mode==="laser"?"Los láseres se encienden en…":"El guardia empieza a vigilar en…";
+  say(lv?`Misión ${play.level+1}. ${lv.brief}`:`¡A vuestros puestos, ${NAMES}!`);
+  let n=lv?15:10;$("#countNum").textContent=n;
   const step=()=>{n--;if(n>0){$("#countNum").textContent=n;sfx.tick();if(n<=5)say(String(n));later(step,1000)}else{sfx.go();say("¡Empieza!");beginWatching(true)}};
   later(step,1000);
   $("#gMode").textContent=m.name.toUpperCase();
@@ -460,32 +661,32 @@ function startGame(){
 function beginWatching(first){
   if(!game)return;
   show("game");
-  if(first){game.t0=Date.now();if(cfg.mode==="reloj"){game.deadline=Date.now()+120000}startDetect();
+  if(first){game.t0=Date.now();if(play.mode==="reloj"){game.deadline=Date.now()+120000}startDetect();
     game.clock=setInterval(tickClock,250);tickClock()}
-  game.phase="watch";game.hits=0;game.grace=Date.now()+900;
+  game.phase="watch";game.hits=0;game.grace=Date.now()+900;music.start();
   const gm=$("#game");gm.classList.add("watch");gm.classList.remove("sleep");
   drawStage("watch");
-  $("#gStatus").textContent=cfg.mode==="laser"?"LÁSERES ON":"VIGILANDO";
+  $("#gStatus").textContent=play.mode==="laser"?"LÁSERES ON":"VIGILANDO";
   $("#gSub").textContent="¡Que nadie se mueva!";
   $("#defuseBtn").disabled=true;
-  const g=GUARDS[cfg.guard];
+  const g=G();
   onMotion=f=>{if(game.phase!=="watch"||Date.now()<game.grace)return;
     if(f>g.sens){if(++game.hits>=2)caught()}else game.hits=0};
   later(beginSleeping,rnd(g.awake[0],g.awake[1])*1000);
 }
 function beginSleeping(){
   if(!game||game.phase!=="watch")return;
-  const g=GUARDS[cfg.guard];
-  game.phase="sleep";
+  const g=G();
+  game.phase="sleep";music.stop();
   const gm=$("#game");gm.classList.add("sleep");gm.classList.remove("watch");
   drawStage("sleep");
-  $("#gStatus").textContent=cfg.mode==="laser"?"LÁSERES OFF":"DURMIENDO";
+  $("#gStatus").textContent=play.mode==="laser"?"LÁSERES OFF":"DURMIENDO";
   $("#defuseBtn").disabled=false;
-  say(cfg.mode==="laser"?"Láseres apagados":"¡Se ha dormido!");
+  say(play.mode==="laser"?"Láseres apagados":"¡Se ha dormido!");
   sfx.snore();
   let s=g.sleep;
   const step=()=>{if(!game||game.phase!=="sleep")return;
-    if(s>0){$("#gSub").textContent=(cfg.mode==="laser"?"Se encienden en ":"Se despierta en ")+s;
+    if(s>0){$("#gSub").textContent=(play.mode==="laser"?"Se encienden en ":"Se despierta en ")+s;
       if(s<=3){sfx.warn(s);}else if(s%2===1)sfx.snore();
       s--;later(step,1000)}
     else beginWatching(false)};
@@ -493,7 +694,7 @@ function beginSleeping(){
 }
 function tickClock(){
   if(!game)return;
-  if(cfg.mode==="reloj"&&game.phase!=="puzzle"){const left=Math.max(0,game.deadline-Date.now());$("#gTimer").textContent=fmt(left);
+  if(play.mode==="reloj"&&game.phase!=="puzzle"){const left=Math.max(0,game.deadline-Date.now());$("#gTimer").textContent=fmt(left);
     if(left<=0&&(game.phase==="watch"||game.phase==="sleep")){timeUp()}}
   else $("#gTimer").textContent="";
 }
@@ -504,24 +705,69 @@ $("#defuseBtn").onclick=()=>{if(!game||game.phase!=="sleep")return;sfx.good();cl
 function caught(){
   if(!game||game.phase!=="watch")return;
   game.phase="end";const img=snapshot();clearAll();
-  score.guard++;store.set("score",score);
+  addPoint("guard");$("#loseBoard").innerHTML=boardHTML({bump:"guard"});
   $("#snap").src=img;$("#snap").hidden=!img;$("#snapLbl").hidden=!img;
-  $("#loseTitle").textContent=cfg.mode==="laser"?"¡LÁSER CORTADO!":"¡TE HE VISTO!";
+  $("#loseTitle").textContent=play.mode==="laser"?"¡LÁSER CORTADO!":"¡TE HE VISTO!";
   $("#loseText").textContent=`El guardia gana esta vez. ¿Revancha, ${NAMES}?`;
   show("lose");const l=$("#lose");l.classList.remove("flash");void l.offsetWidth;l.classList.add("flash");
-  sfx.siren();say(cfg.mode==="laser"?"¡Intruso detectado!":"¡Te he visto!");
+  sfx.siren();say(play.mode==="laser"?"¡Intruso detectado!":"¡Te he visto!");
 }
 function timeUp(){
-  game.phase="end";clearAll();score.guard++;store.set("score",score);
+  game.phase="end";clearAll();addPoint("guard");$("#loseBoard").innerHTML=boardHTML({bump:"guard"});
   $("#snap").hidden=true;$("#snapLbl").hidden=true;
   $("#loseTitle").textContent="¡TIEMPO!";$("#loseText").textContent="Se acabaron los 2 minutos. El guardia gana esta vez.";
   show("lose");sfx.boom();say("¡Se acabó el tiempo!");
 }
 
+/* ================== AVENTURA: MAPA ================== */
+function advDone(){return Math.min(LEVELS.length,store.get("adv",0)|0)}
+const LV_Y=i=>310-i*32;
+function curvePath(pts){let d=`M${pts[0][0]} ${pts[0][1]}`;
+  for(let i=0;i<pts.length-1;i++){const p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||p2;
+    d+=` C${p1[0]+(p2[0]-p0[0])/6} ${p1[1]+(p2[1]-p0[1])/6},${p2[0]-(p3[0]-p1[0])/6} ${p2[1]-(p3[1]-p1[1])/6},${p2[0]} ${p2[1]}`}return d}
+function renderMap(){
+  const done=advDone(),cur=Math.min(done,LEVELS.length-1),pts=LEVELS.map((l,i)=>[l.x,LV_Y(i)]);
+  const all=curvePath(pts),walked=cur>0?curvePath(pts.slice(0,cur+1)):"";
+  $("#mapProg").textContent=`${done}/${LEVELS.length}`;
+  const fogTo=cur+1<LEVELS.length?LV_Y(cur+1)-8:0;
+  $("#mapArea").innerHTML=`<svg viewBox="0 0 100 330" aria-hidden="true">
+      <g opacity=".55" fill="none" stroke="#2c4a6e" stroke-width=".4">
+        <circle cx="84" cy="262" r="9"/><circle cx="84" cy="262" r="5"/><path d="M8 196 q8 -6 16 0 t16 0"/><path d="M58 132 q8 -6 16 0 t16 0"/>
+        <rect x="6" y="66" width="14" height="10" rx="1"/><path d="M84 46 l5 5 m0 -5 l-5 5"/></g>
+      <g transform="translate(88 316)" fill="#6f8fb8" font-family="Share Tech Mono,monospace" font-size="3.4" text-anchor="middle">
+        <path d="M0 -8 L1.8 0 L0 8 L-1.8 0 Z" fill="#e9dcc0"/><path d="M-8 0 L0 1.8 L8 0 L0 -1.8 Z"/><text y="-9.5">N</text></g>
+      <text x="4" y="326" fill="#3f5f86" font-family="Share Tech Mono,monospace" font-size="3">EXPEDIENTE ${String(done).padStart(2,"0")}/${LEVELS.length} · ALTO SECRETO</text>
+      <path d="${all}" stroke="#ffffff26" stroke-width="1.2" fill="none" stroke-dasharray="2.5 2.5"/>
+      ${walked?`<path d="${walked}" stroke="#ff3b4e" stroke-width="1.5" fill="none" stroke-dasharray="2.5 2.5" stroke-linecap="round"/>`:""}
+    </svg>
+    ${fogTo?`<div class="fog" style="height:${fogTo/330*100}%"></div>`:""}
+    ${LEVELS.map((l,i)=>{const st=i<done?"done":i===cur?"cur":"lock";
+      return `<button class="lvl ${st}${i===LEVELS.length-1?" boss":""}" data-i="${i}" style="left:${l.x}%;top:${LV_Y(i)/330*100}%" aria-label="Misión ${i+1}: ${l.name}${st==="lock"?" (bloqueada)":""}">
+        <span class="dot">${st==="lock"?"🔒":l.ic}<span class="num">${i+1}</span>${st==="done"?'<span class="ok">✓</span>':""}</span><span class="nm">${st==="lock"&&i>cur+1?"???":l.name}</span></button>`}).join("")}
+    ${done<LEVELS.length?`<div class="me" style="left:${LEVELS[cur].x}%;top:calc(${LV_Y(cur)/330*100}% - 34px)">🕵️</div>`:""}`;
+}
+function openMap(focus){
+  show("map");renderMap();$("#sheet").hidden=true;
+  const i=focus!=null?focus:Math.min(advDone(),LEVELS.length-1);
+  requestAnimationFrame(()=>{const el=$(`.lvl[data-i="${i}"]`);if(el)el.scrollIntoView({block:"center"});if(focus!=null)openSheet(focus)});
+}
+function openSheet(i){
+  const l=LEVELS[i],g=GUARDS[l.guard],m=MODES[l.mode],r=l.reto==="jefe"?RETO_JEFE:RETOS[l.reto];
+  $("#shIc").textContent=l.ic;$("#shNum").textContent=`MISIÓN ${String(i+1).padStart(2,"0")}`;$("#shName").textContent=l.name;
+  $("#shBrief").textContent=l.brief;
+  $("#shChips").innerHTML=`<span>${m.ic} ${m.name}</span><span>${r.ic} ${r.name}</span><span>${g.ic} Guardia ${g.name.toLowerCase()}</span>`;
+  $("#sheet").hidden=false;
+  $("#shPlay").onclick=()=>{audio();sfx.click();$("#sheet").hidden=true;play={mode:l.mode,reto:l.reto,guard:l.guard,level:i,tweak:l.tweak||null};goSetup()};
+}
+$("#mapArea").addEventListener("click",e=>{const b=e.target.closest(".lvl");if(!b)return;const i=+b.dataset.i;
+  if(i>Math.min(advDone(),LEVELS.length-1)){sfx.bad();shakeEl(b);return}sfx.click();openSheet(i)});
+$("#shClose").onclick=()=>{$("#sheet").hidden=true};
+$("#mapBack").onclick=()=>{show("menu");renderMenu()};
+
 /* ================== DIBUJOS ================== */
 function drawStage(state){
   const st=$("#stage");
-  if(cfg.mode==="laser"){
+  if(play.mode==="laser"){
     const on=state==="watch";
     st.innerHTML=`<svg class="lasers" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
       ${[[0,15,100,40],[0,55,100,25],[0,80,100,60],[0,35,100,90],[0,95,100,10]].map(([x1,y1,x2,y2],i)=>
@@ -562,11 +808,14 @@ const sym=(k,col,size="1em")=>`<svg viewBox="0 0 24 24" width="${size}" height="
 let fuseLeft=0,fuseTotal=0;
 
 function startPuzzle(){
-  const m=MODES[cfg.mode],g=GUARDS[cfg.guard];
+  const m=MODES[play.mode],g=G();
   let steps;
-  if(cfg.reto==="equipo")steps=[{fn:Math.random()<.5?pzCables:pzCortar,who:SMALL.name},{fn:Math.random()<.5?pzCodigo:pzMemoria,who:BIG.name}];
-  else steps=[{fn:{cables:pzCables,cortar:pzCortar,codigo:pzCodigo,memoria:pzMemoria}[cfg.reto],who:{cables:SMALL,cortar:SMALL,codigo:BIG,memoria:BIG}[cfg.reto].name}];
-  fuseTotal=fuseLeft=(steps.length>1?150:80)+g.fuse;
+  const smallP=shuffle([pzCables,pzCortar,pzLetra,pzPalabra]),bigP=shuffle([pzCodigo,pzMemoria]);
+  if(play.reto==="jefe")steps=[{fn:smallP[0],who:SMALL.name},{fn:bigP[0],who:BIG.name},{fn:smallP[1],who:SMALL.name}];
+  else if(play.reto==="equipo")steps=[{fn:smallP[0],who:SMALL.name},{fn:bigP[0],who:BIG.name}];
+  else steps=[{fn:{cables:pzCables,cortar:pzCortar,letra:pzLetra,palabra:pzPalabra,codigo:pzCodigo,memoria:pzMemoria}[play.reto],
+    who:({codigo:BIG,memoria:BIG}[play.reto]||SMALL).name}];
+  fuseTotal=fuseLeft=({1:80,2:150,3:200})[steps.length]+g.fuse;
   $("#pTitle").textContent=m.title;
   show("puzzle");say(`¡Rápido! ${m.title}`);
   updateFuse();
@@ -582,16 +831,21 @@ function updateFuse(){$("#fuseBar").style.width=Math.max(0,fuseLeft/fuseTotal*10
 function penalty(s){fuseLeft=Math.max(1,fuseLeft-s);updateFuse();const p=document.createElement("div");p.className="penalty";p.textContent="-"+s;document.body.appendChild(p);setTimeout(()=>p.remove(),1000)}
 function shakeEl(el){el.classList.remove("shake");void el.offsetWidth;el.classList.add("shake")}
 function fuseOut(){
-  const m=MODES[cfg.mode];game.phase="end";clearAll();score.guard++;store.set("score",score);
+  const m=MODES[play.mode];game.phase="end";clearAll();addPoint("guard");$("#loseBoard").innerHTML=boardHTML({bump:"guard"});
   $("#snap").hidden=true;$("#snapLbl").hidden=true;$("#loseTitle").textContent=m.lose;$("#loseText").textContent=m.loseTxt;
   show("lose");sfx.boom();say(m.lose.replace(/¡|!/g,""));
 }
 function won(){
-  const m=MODES[cfg.mode];game.phase="end";clearAll();score.kids++;store.set("score",score);
-  const ms=Date.now()-game.t0,key="best_"+cfg.mode+"_"+cfg.reto+"_"+cfg.guard,best=store.get(key,0),rec=!best||ms<best;
+  const m=MODES[play.mode];game.phase="end";clearAll();addPoint("kids");$("#winBoard").innerHTML=boardHTML({bump:"kids"});
+  const ms=Date.now()-game.t0,key="best_"+play.mode+"_"+play.reto+"_"+play.guard,best=store.get(key,0),rec=!best||ms<best;
   if(rec)store.set(key,ms);
   $("#winIcon").textContent=m.winIc;$("#winTitle").textContent=m.win;
   $("#winText").textContent=`¡Misión cumplida, ${NAMES}! Sois unos espías de primera.`;
+  const adv=play.level!=null;$("#winNext").hidden=!adv;$("#winAgain").hidden=adv;
+  if(adv){const lvl=play.level,first=lvl+1>advDone(),last=lvl===LEVELS.length-1;if(first)store.set("adv",lvl+1);
+    $("#winText").textContent=last?`¡Habéis derrotado a ${VILLAIN}, ${NAMES}! Sois los mejores espías del mundo.`
+      :`Misión ${lvl+1} cumplida. ${first?`¡Desbloqueada la misión ${lvl+2}: ${LEVELS[lvl+1].name}!`:"¡Otra vez perfecta!"}`;
+    $("#winNext").textContent=last?"VER EL MAPA":"SIGUIENTE MISIÓN"}
   $("#winStat").textContent=`Tiempo ${fmt(ms)}`+(rec?" · ¡NUEVO RÉCORD!":` · Récord ${fmt(best)}`);
   show("win");sfx.win();say(`${m.win.replace(/¡|!/g,"")}. ¡Misión cumplida, ${NAMES}!`);confetti();
 }
@@ -665,6 +919,44 @@ function pzCodigo(body,done){
     if(n==="del")typed.pop();else if(n==="ok")return check();else if(typed.length<4){typed.push(+n);sfx.click()}
     paint();if(typed.length===4)later(check,250)};
   paint();
+}
+
+/* --- Letras (para aprender a leer) --- */
+const WORDS=[["SOL","☀️"],["MAR","🌊"],["OSO","🐻"],["PAN","🍞"],["PEZ","🐟"],["UVA","🍇"],["GATO","🐱"],["PATO","🦆"],["LUNA","🌙"],
+  ["CASA","🏠"],["MANO","✋"],["TREN","🚂"],["PERA","🍐"],["RANA","🐸"],["VACA","🐮"],["MONO","🐵"],["FOCA","🦭"],["DADO","🎲"],["NUBE","☁️"],["TAZA","☕"]];
+const ABC="ABCDEFGILMNOPRSTUV".split("");
+
+// Primera letra: se ve el dibujo y la palabra sin la primera letra; hay que tocar la letra que falta (3 rondas).
+function pzLetra(body,done){
+  const pick=shuffle(WORDS).slice(0,3);let r=0;
+  const render=()=>{
+    const [w,em]=pick[r],first=w[0],opts=shuffle([first,...shuffle(ABC.filter(c=>c!==first)).slice(0,2)]);
+    $("#pTask").textContent="Escucha y toca la letra que falta.";say(`¿Con qué letra empieza ${w.toLowerCase()}?`);
+    body.innerHTML=`<div class="rounds">${[0,1,2].map(i=>`<i class="${i<r?"ok":""}"></i>`).join("")}</div>
+      <div class="wordCard"><div class="em">${em}</div><div class="word"><span class="miss">?</span>${w.slice(1)}</div></div>
+      <div class="letters three">${opts.map(c=>`<button class="tile" data-c="${c}">${c}</button>`).join("")}</div>`;
+    body.querySelector(".letters").onclick=e=>{const b=e.target.closest(".tile");if(!b||b.disabled)return;
+      if(b.dataset.c===first){b.classList.add("right");sfx.good();body.querySelector(".miss").textContent=first;body.querySelector(".miss").classList.add("got");
+        say(`¡Sí! ${w.toLowerCase()} empieza por ${first}`);body.querySelectorAll(".tile").forEach(t=>t.disabled=true);
+        r++;if(r>=3)later(done,1400);else later(render,1600)}
+      else{b.disabled=true;b.classList.add("wrong");sfx.bad();shakeEl(b);penalty(3)}};
+  };
+  render();
+}
+// Palabra secreta: copiar la palabra tocando las letras en orden (las letras guía se ven en gris).
+function pzPalabra(body,done){
+  const [w,em]=WORDS.filter(x=>x[0].length<=4)[Math.random()*WORDS.length|0]||WORDS[6];
+  const tiles=shuffle(w.split("").map((c,i)=>({c,i})).concat(shuffle(ABC.filter(c=>!w.includes(c))).slice(0,2).map(c=>({c,i:-1}))));
+  let pos=0;
+  $("#pTask").textContent="Escribe la palabra secreta: toca las letras en orden.";say(`Escribe la palabra ${w.toLowerCase()}`);
+  body.innerHTML=`<div class="wordCard"><div class="em">${em}</div>
+      <div class="slotsW">${w.split("").map(c=>`<span class="sl"><i>${c}</i></span>`).join("")}</div></div>
+    <div class="letters">${tiles.map((t,k)=>`<button class="tile" data-k="${k}">${t.c}</button>`).join("")}</div>`;
+  const sl=[...body.querySelectorAll(".sl")];sl[0].classList.add("cur");
+  body.querySelector(".letters").onclick=e=>{const b=e.target.closest(".tile");if(!b||b.disabled)return;const t=tiles[+b.dataset.k];
+    if(t.c===w[pos]){b.disabled=true;b.classList.add("used");sl[pos].classList.remove("cur");sl[pos].classList.add("got");sl[pos].firstChild.textContent=t.c;sfx.click();say(t.c);pos++;
+      if(pos===w.length){sfx.good();say(`¡${w.toLowerCase()}!`);later(done,1200)}else sl[pos].classList.add("cur")}
+    else{sfx.bad();shakeEl(b);penalty(3)}};
 }
 
 /* --- Memoria: repetir la secuencia de colores --- */
